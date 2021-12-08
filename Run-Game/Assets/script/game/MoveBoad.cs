@@ -10,12 +10,22 @@ public class MoveBoad : MonoBehaviour
     private float speed = 0.1f;
     [SerializeField]
     private GameObject boadbody;
+    [SerializeField]
+    private bool optionSW = true;
+    [SerializeField]
+    private GameObject optionOJ;
 
     private Vector3 pos = new Vector3();
+    private Vector3 posO = new Vector3();
 
     private void Awake()
     {
         pos = boadbody.transform.position;
+
+		if (optionSW)
+		{
+            posO = optionOJ.transform.position;
+		}
     }
 
     private void FixedUpdate()
@@ -23,8 +33,14 @@ public class MoveBoad : MonoBehaviour
         if (moveBoad)
         {
             pos.x -= speed;
+            posO.x -= speed;
 
             boadbody.transform.position = pos;
+
+			if (optionSW)
+			{
+                optionOJ.transform.position = posO;
+			}
         }
     }
 

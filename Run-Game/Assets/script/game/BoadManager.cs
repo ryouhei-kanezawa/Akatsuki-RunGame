@@ -5,20 +5,18 @@ using UnityEngine;
 public class BoadManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject boadObject;
+    private GameObject[] boadObject;
     [SerializeField]
     private float nextSpawnTime = 0;
     [SerializeField]
-    private float interval = 15f;
+    private float interval = 2f;
 
-    private bool active = false;
+    private int Rnum = 0;
+    private bool active = true;
     private void LocalInstantate()
     {
-        GameObject obj = (GameObject)GameObject.Instantiate(boadObject);
-        obj.transform.parent = transform;
-
-        float y = Random.Range(-1f, 1f);
-        obj.transform.localPosition = new Vector3(0, y, 0);
+        Rnum = Random.Range(0, boadObject.Length);
+        GameObject obj = (GameObject)GameObject.Instantiate(boadObject[Rnum]);
     }
 
     void Update()
@@ -38,14 +36,15 @@ public class BoadManager : MonoBehaviour
         active = _active;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(collision.attachedRigidbody.gameObject);
+        Debug.Log(111);
+        Destroy(collision.gameObject);
     }
 
-    public void CleanBoadObject()
+	public void CleanBoadObject()
     {
-        GameObject[] boads = GameObject.FindGameObjectsWithTag("Boad");
+        GameObject[] boads = GameObject.FindGameObjectsWithTag("field");
 
         foreach(var VARIABLE in boads)
         {

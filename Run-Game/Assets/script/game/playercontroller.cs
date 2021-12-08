@@ -29,4 +29,12 @@ public class playercontroller : MonoBehaviour
 	{
         player_jump.velocity = Vector2.up * junmp;
 	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.CompareTag("coin"))
+		{
+            Debug.Log("coinSet");
+		}
+	}
 }
