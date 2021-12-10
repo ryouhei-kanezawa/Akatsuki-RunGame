@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class starr_sc : MonoBehaviour
+public class Starr_sc : MonoBehaviour
 {
     [SerializeField]
     private GameObject _Object;

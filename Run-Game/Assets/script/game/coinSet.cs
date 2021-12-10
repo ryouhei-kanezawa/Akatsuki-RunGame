@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class coinSet : MonoBehaviour
+public class CoinSet : MonoBehaviour
 {
     private Rigidbody rb;
 

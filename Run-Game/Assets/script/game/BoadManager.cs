@@ -5,7 +5,9 @@ using UnityEngine;
 public class BoadManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] boadObject;
+    private GameObject boadObject;
+    [SerializeField]
+    private GameObject[] item;
     [SerializeField]
     private float nextSpawnTime = 0;
     [SerializeField]
@@ -15,8 +17,9 @@ public class BoadManager : MonoBehaviour
     private bool active = true;
     private void LocalInstantate()
     {
-        Rnum = Random.Range(0, boadObject.Length);
-        GameObject obj = (GameObject)GameObject.Instantiate(boadObject[Rnum]);
+        Rnum = Random.Range(0, item.Length);
+        GameObject obj = (GameObject)GameObject.Instantiate(boadObject);
+        GameObject opt = (GameObject)GameObject.Instantiate(item[Rnum]);
     }
 
     void Update()

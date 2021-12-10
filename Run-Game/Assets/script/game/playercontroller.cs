@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playercontroller : MonoBehaviour
+public class Playercontroller : MonoBehaviour
 {
     [SerializeField]
     private GameObject player_body;
@@ -10,6 +10,9 @@ public class playercontroller : MonoBehaviour
     private float junmp = 10.0f;
 
     private Rigidbody2D player_jump;
+    private int num = 0;
+    private bool check = true;
+    private int jumpCount;
 
     void Start()
     {
@@ -19,10 +22,18 @@ public class playercontroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKeyDown("space"))
+		if (check)
 		{
-            Jump_getkey();
+			if (jumpCount<=1)
+			{
+                if (Input.GetKeyDown("space"))
+		        {
+                    Jump_getkey();
+                    jumpCount++;
+		        }
+			}
 		}
+		
     }
 
     private void Jump_getkey()
@@ -35,6 +46,15 @@ public class playercontroller : MonoBehaviour
 		if (collision.gameObject.CompareTag("coin"))
 		{
             Debug.Log("coinSet");
+            Destroy(collision.gameObject);
 		}
 	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "field")
+        {
+            jumpCount = 0;
+        }
+    }
 }
