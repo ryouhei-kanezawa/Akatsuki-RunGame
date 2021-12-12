@@ -7,7 +7,7 @@ public class Playercontroller : MonoBehaviour
     [SerializeField]
     private GameObject player_body;
     [SerializeField]
-    private float junmp = 10.0f;
+    private float junmp = 20.0f;
 
     private Rigidbody2D player_jump;
     private int num = 0;
