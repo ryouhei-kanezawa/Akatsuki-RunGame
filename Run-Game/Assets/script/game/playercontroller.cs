@@ -8,9 +8,10 @@ public class Playercontroller : MonoBehaviour
     private GameObject player_body;
     [SerializeField]
     private float junmp = 20.0f;
+    [SerializeField]
+    private CoinSet _coin;
 
     private Rigidbody2D player_jump;
-    private int num = 0;
     private bool check = true;
     private int jumpCount;
 
@@ -46,6 +47,7 @@ public class Playercontroller : MonoBehaviour
 		if (collision.gameObject.CompareTag("coin"))
 		{
             Debug.Log("coinSet");
+            _coin.CoinUpdate();
             Destroy(collision.gameObject);
 		}
 	}

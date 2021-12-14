@@ -15,13 +15,11 @@ public class BoadManager : MonoBehaviour
 
     private int Rnum = 0;
     private bool active = true;
-    private GameObject obj;
-    private GameObject opt;
     private void LocalInstantate()
     {
+        GameObject obj = (GameObject)GameObject.Instantiate(boadObject);
         Rnum = Random.Range(0, item.Length);
-        obj = (GameObject)GameObject.Instantiate(boadObject);
-        opt = (GameObject)GameObject.Instantiate(item[Rnum]);
+        GameObject opt = (GameObject)GameObject.Instantiate(item[Rnum]);
     }
 
     void Update()

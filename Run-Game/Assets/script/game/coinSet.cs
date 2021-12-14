@@ -1,31 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CoinSet : MonoBehaviour
 {
-    private Rigidbody rb;
+    [SerializeField]
+    private TextMeshProUGUI coin;
+    [SerializeField]
+    private TextMeshProUGUI kyori;
+    [SerializeField]
+    private int score = 10;
+    [SerializeField]
+    private PaseUI _pose;
+
+    private int coinScore;
+    private int kyoriScore;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        coinScore = 0;
+        kyoriScore = 0;
+
+        coin.text = coinScore.ToString();
+        kyori.text = kyoriScore.ToString();
     }
 
-    void OnCollisionEnter(Collision col)
-    {
-        if (transform.parent == null && col.gameObject.name == "field")
-        {
-            var emptyObject = new GameObject();
-            emptyObject.transform.parent = col.gameObject.transform;
-            transform.parent = emptyObject.transform;
-        }
-    }
+	private void Update()
+	{
+		if (_pose.CheckSend())
+		{
+            kyoriScore += score;
+		}
 
-    void OnCollisionExit(Collision col)
-    {
-        if (transform.parent != null && col.gameObject.name == "field")
-        {
-            transform.parent = null;
-        }
-    }
+        kyori.text = kyoriScore.ToString();
+	}
+
+    public void CoinUpdate()
+	{
+        coinScore++;
+
+        coin.text = coinScore.ToString();
+	}
 }
