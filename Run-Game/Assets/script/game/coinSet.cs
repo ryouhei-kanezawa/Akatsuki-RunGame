@@ -12,8 +12,9 @@ public class CoinSet : MonoBehaviour
     [SerializeField]
     private int score = 10;
     [SerializeField]
-    private PaseUI _pose;
+    private TimeStart Stop;
 
+    private bool swich = true;
     private int coinScore;
     private int kyoriScore;
 
@@ -28,10 +29,13 @@ public class CoinSet : MonoBehaviour
 
 	private void Update()
 	{
-		if (_pose.CheckSend())
-		{
-            kyoriScore += score;
-		}
+        if (Stop.StopMoment())
+        {
+			if (swich)
+			{
+                kyoriScore += score;
+			}
+        }
 
         kyori.text = kyoriScore.ToString();
 	}
@@ -41,5 +45,10 @@ public class CoinSet : MonoBehaviour
         coinScore++;
 
         coin.text = coinScore.ToString();
+	}
+
+    public void StopSwich(bool set)
+	{
+        swich = set;
 	}
 }

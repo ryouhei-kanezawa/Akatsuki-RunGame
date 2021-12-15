@@ -10,9 +10,11 @@ public class Playercontroller : MonoBehaviour
     private float junmp = 20.0f;
     [SerializeField]
     private CoinSet _coin;
+    [SerializeField]
+    private TimeStart Stop;
 
     private Rigidbody2D player_jump;
-    private bool check = true;
+    private bool check = false;
     private int jumpCount;
 
     void Start()
@@ -23,7 +25,7 @@ public class Playercontroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (check)
+		if (Stop.StopMoment())
 		{
 			if (jumpCount<=1)
 			{

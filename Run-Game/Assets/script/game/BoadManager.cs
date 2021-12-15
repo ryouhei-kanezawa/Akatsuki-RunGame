@@ -9,32 +9,33 @@ public class BoadManager : MonoBehaviour
     [SerializeField]
     private GameObject[] item;
     [SerializeField]
-    private float nextSpawnTime = 0;
-    [SerializeField]
     private float interval = 2f;
+    [SerializeField]
+    private TimeStart Stop;
 
+    private float nextSpawnTime = 0;
     private int Rnum = 0;
-    private bool active = true;
+    private bool active = false;
     private void LocalInstantate()
     {
         GameObject obj = (GameObject)GameObject.Instantiate(boadObject);
-        Rnum = Random.Range(0, item.Length);
-        GameObject opt = (GameObject)GameObject.Instantiate(item[Rnum]);
+		if (Stop.StopMoment())
+		{
+            Rnum = Random.Range(0, item.Length);
+            GameObject opt = (GameObject)GameObject.Instantiate(item[Rnum]);
+		}
     }
 
     void Update()
     {
-        if (active)
-        {
         if (nextSpawnTime < Time.timeSinceLevelLoad)
         {
             nextSpawnTime = Time.timeSinceLevelLoad + interval;
             LocalInstantate();
         }
-        }
     }
 
-    public void setActive(bool _active)
+    public void SetActive(bool _active)
     {
         active = _active;
     }
