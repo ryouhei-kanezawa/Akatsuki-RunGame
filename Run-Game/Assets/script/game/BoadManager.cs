@@ -15,7 +15,6 @@ public class BoadManager : MonoBehaviour
 
     private float nextSpawnTime = 0;
     private int Rnum = 0;
-    private bool active = false;
     private void LocalInstantate()
     {
         GameObject obj = (GameObject)GameObject.Instantiate(boadObject);
@@ -35,14 +34,8 @@ public class BoadManager : MonoBehaviour
         }
     }
 
-    public void SetActive(bool _active)
-    {
-        active = _active;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(111);
         Destroy(collision.gameObject);
     }
 
